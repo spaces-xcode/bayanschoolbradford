@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Form registration (build-time only)</title>
+  </head>
+  <body>
+    <!--
+      This file exists solely so Netlify's build bot can detect the site's forms.
+      The real forms are React components (src/components/RegistrationForm.tsx and
+      ContactForm.tsx) which POST here as url-encoded data. Field names must stay
+      in sync with those components.
+    -->
+    <form name="registration" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="registration" />
+      <input type="hidden" name="subject" />
+      <input name="bot-field" />
+      <input name="parentName" />
+      <input name="relationship" />
+      <input name="phone" />
+      <input name="email" />
+      <input name="childName" />
+      <input name="childDob" />
+      <input name="childSchool" />
+      <input name="arabicAtHome" />
+      <input name="levelInterest" />
+      <input name="experience" />
+      <textarea name="medical"></textarea>
+      <input name="consent" />
+    </form>
+
+    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="hidden" name="subject" />
+      <input name="bot-field" />
+      <input name="name" />
+      <input name="email" />
+      <input name="phone" />
+      <input name="topic" />
+      <textarea name="message"></textarea>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,406 @@
+@import "tailwindcss" source("../");
+
+/* ==========================================================================
+   Bayan Arabiya School Bradford — design tokens
+   Palette: gold leaf on ivory parchment, warm espresso ink. One warm family.
+   ========================================================================== */
+
+@theme {
+  --color-ivory: #fbf6ec;
+  --color-parchment: #f4ebd9;
+  --color-sand: #e8dac0;
+  --color-sand-deep: #d8c39d;
+
+  --color-gold: #c08b2b;
+  --color-gold-light: #e6bc5c;
+  --color-gold-pale: #f0dcae;
+  --color-gold-deep: #8f6417;
+
+  --color-espresso: #241b10;
+  --color-ink: #33291b;
+  --color-ink-soft: #5c4f3d;
+  --color-muted: #7d6f5c;
+
+  --font-display: "Marcellus", "Iowan Old Style", Georgia, serif;
+  --font-body: "Karla", "Helvetica Neue", sans-serif;
+  --font-arabic: "Amiri", "Noto Naskh Arabic", serif;
+
+  --shadow-lift: 0 1px 2px rgba(36, 27, 16, 0.06), 0 18px 40px -24px rgba(36, 27, 16, 0.35);
+  --shadow-plate: 0 30px 60px -35px rgba(36, 27, 16, 0.45);
+}
+
+/* ---------------------------------------------------------------- base ---- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-ivory);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1.0125rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-gold-pale);
+  color: var(--color-espresso);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold-deep);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.012em;
+  color: var(--color-espresso);
+}
+
+/* Disclosure rows use a gold "+" instead of the native marker. */
+summary {
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ------------------------------------------------------------ typography -- */
+
+.font-arabic,
+[lang="ar"] {
+  font-family: var(--font-arabic);
+  line-height: 1.9;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-gold-deep);
+}
+
+.lede {
+  font-size: 1.15rem;
+  line-height: 1.68;
+  color: var(--color-ink-soft);
+}
+
+/* Gold-leaf gradient text, used sparingly on hero + emblem lettering. */
+.gilt {
+  background: linear-gradient(103deg, #8f6417 0%, #d9a63f 34%, #f4dc9c 52%, #c08b2b 74%, #8f6417 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ----------------------------------------------------------- ornaments ---- */
+
+/* Eight-point girih star lattice — the site's recurring textural motif. */
+.pattern-girih {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cg fill='none' stroke='%23c08b2b' stroke-width='1'%3E%3Cpath d='M36 4 44 20 60 12 52 28 68 36 52 44 60 60 44 52 36 68 28 52 12 60 20 44 4 36 20 28 12 12 28 20Z'/%3E%3Cpath d='M36 20 44 36 36 52 28 36Z'/%3E%3Ccircle cx='36' cy='36' r='30'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 72px 72px;
+}
+
+.pattern-scallop {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Cpath d='M0 20a20 20 0 0 1 40 0' fill='none' stroke='%23c08b2b' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-size: 40px 20px;
+}
+
+/* Fine paper grain, fixed and non-interactive. */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.32;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* Pointed Islamic arch used to frame imagery and emblem plates. */
+.arch {
+  border-radius: 48% 48% 12px 12px / 62% 62% 12px 12px;
+}
+
+.arch-sm {
+  border-radius: 50% 50% 8px 8px / 55% 55% 8px 8px;
+}
+
+.rule-gold {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-sand-deep) 12%, var(--color-gold) 50%, var(--color-sand-deep) 88%, transparent);
+}
+
+/* -------------------------------------------------------------- surfaces -- */
+
+.plate {
+  background: linear-gradient(168deg, #ffffff 0%, var(--color-ivory) 58%, var(--color-parchment) 100%);
+  border: 1px solid var(--color-sand);
+  box-shadow: var(--shadow-lift);
+}
+
+.plate-dark {
+  background:
+    radial-gradient(120% 90% at 12% 0%, rgba(192, 139, 43, 0.22) 0%, transparent 58%),
+    linear-gradient(158deg, #2c2114 0%, #1c150c 100%);
+  color: var(--color-parchment);
+}
+
+.hairline {
+  border: 1px solid var(--color-sand);
+}
+
+/* ---------------------------------------------------------------- links --- */
+
+.link-quiet {
+  position: relative;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.link-quiet::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 1px;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.42s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.link-quiet:hover::after,
+.link-quiet[data-active="true"]::after {
+  transform: scaleX(1);
+}
+
+.link-quiet[data-active="true"] {
+  color: var(--color-gold-deep);
+}
+
+/* -------------------------------------------------------------- buttons --- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.6rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition:
+    transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.28s ease,
+    background-color 0.28s ease,
+    color 0.28s ease;
+}
+
+.btn-gold {
+  background: linear-gradient(120deg, #b07f22 0%, #d5a53c 48%, #a97a1f 100%);
+  color: #fffaf0;
+  box-shadow: 0 12px 26px -16px rgba(143, 100, 23, 0.9);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px -16px rgba(143, 100, 23, 0.95);
+}
+
+.btn-outline {
+  border-color: var(--color-sand-deep);
+  color: var(--color-ink);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold-deep);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* --------------------------------------------------------------- fields --- */
+
+.field-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 0.45rem;
+}
+
+.field {
+  width: 100%;
+  padding: 0.78rem 0.95rem;
+  font-family: var(--font-body);
+  font-size: 0.97rem;
+  color: var(--color-ink);
+  background: #fffdf8;
+  border: 1px solid var(--color-sand-deep);
+  border-radius: 2px;
+  transition:
+    border-color 0.24s ease,
+    box-shadow 0.24s ease;
+}
+
+.field::placeholder {
+  color: #a89882;
+}
+
+.field:hover {
+  border-color: var(--color-gold-light);
+}
+
+.field:focus {
+  outline: none;
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(230, 188, 92, 0.28);
+}
+
+.field[aria-invalid="true"] {
+  border-color: #a8442c;
+  box-shadow: 0 0 0 3px rgba(168, 68, 44, 0.14);
+}
+
+.field-error {
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  color: #8f3521;
+}
+
+/* --------------------------------------------------------------- motion --- */
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes unveil {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@keyframes sheen {
+  0% {
+    transform: translate3d(-120%, 0, 0) rotate(12deg);
+  }
+  100% {
+    transform: translate3d(240%, 0, 0) rotate(12deg);
+  }
+}
+
+.rise {
+  animation: rise 0.9s cubic-bezier(0.22, 0.86, 0.24, 1) both;
+}
+
+.unveil {
+  animation: unveil 1.15s cubic-bezier(0.22, 0.86, 0.24, 1) both;
+}
+
+.drift {
+  animation: drift 7.5s ease-in-out infinite;
+}
+
+.d1 {
+  animation-delay: 0.1s;
+}
+.d2 {
+  animation-delay: 0.22s;
+}
+.d3 {
+  animation-delay: 0.34s;
+}
+.d4 {
+  animation-delay: 0.46s;
+}
+.d5 {
+  animation-delay: 0.58s;
+}
+.d6 {
+  animation-delay: 0.7s;
+}
+
+/* Gold sheen sweeping across the emblem plate once on load. */
+.sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.sheen::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: 0;
+  width: 45%;
+  height: 180%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  animation: sheen 2.6s cubic-bezier(0.4, 0, 0.2, 1) 0.7s 1 both;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .rise,
+  .unveil,
+  .drift,
+  .sheen::before {
+    animation: none !important;
+  }
+}
